@@ -14,7 +14,6 @@
 #define SRAM_BASE_ADDR              (SRAM1_BASE_ADDR)
 
 
-
 /***************************/
 /* Base addresses of Buses */
 /***************************/
@@ -24,9 +23,24 @@
 #define APB2_BASE_ADDR				(0x40010000U)
 #define AHB3_BASE_ADDR				(0xA0001000U)
 
-/****************************/
-/* core processor registers */
-/****************************/
+
+/*************************************/
+/* core processor register addresses */
+/*************************************/
+#define NVIC_ISER_BASE_ADDR         (0xE000E100UL)
+#define NVIC_IPR_BASE_ADDR          (0xE000E400UL)
+
+/************************************/
+/* core processor register pointers */
+/************************************/
+#define NVIC_ISER                   ((volatile uint32_t *)NVIC_ISER_BASE_ADDR)
+#define NVIC_IPR                    ((volatile uint32_t *)NVIC_IPR_BASE_ADDR)
+
+
+/*************************/
+/* core processor macros */
+/*************************/
+
 
 
 /**********************************/
@@ -383,7 +397,285 @@ typedef struct
 
 /* AHB3 Peripheral base addresses */
 
+
+/**********************************/
 /* APB1 Peripheral base addresses */
+/**********************************/
+#define TIM2_BASE_ADDR              ((APB1_BASE_ADDR) + 0x0)
+#define TIM5_BASE_ADDR              ((APB1_BASE_ADDR) + 0x0C00)
+
+
+/***************************************/
+/* APB1 peripheral register structures */
+/***************************************/
+typedef struct
+{
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t SMCR;
+    volatile uint32_t DIER;
+    volatile uint32_t SR;
+    volatile uint32_t EGR;
+    volatile uint32_t CCMR1;
+    volatile uint32_t CCMR2;
+    volatile uint32_t CCER;
+    volatile uint32_t CNT;
+    volatile uint32_t PSC;
+    volatile uint32_t ARR;
+    volatile uint32_t _RESERVED1;
+    volatile uint32_t CCR1;
+    volatile uint32_t CCR2;
+    volatile uint32_t CCR3;
+    volatile uint32_t CCR4;
+    volatile uint32_t _RESERVED2;
+    volatile uint32_t DCR;
+    volatile uint32_t DMAR;
+    volatile uint32_t OR;
+} TIM2X5_regdef_t;
+
+
+/***********************************************/
+/* AHB1 register structure pointer definitions */
+/***********************************************/
+
+/* @TIM2X5_CR1 */
+#define TIM2X5_CR1_CEN              (0UL)
+#define TIM2X5_CR1_UDIS             (1UL)
+#define TIM2X5_CR1_URS              (2UL)
+#define TIM2X5_CR1_OPM              (3UL)
+#define TIM2X5_CR1_DIR              (4UL)
+#define TIM2X5_CR1_CMS              (5UL)
+#define TIM2X5_CR1_ARPE             (7UL)
+#define TIM2X5_CR1_CKD              (8UL)
+
+/* @TIM2X5_CR2 */
+#define TIM2X5_CR2_CCDS             (3UL)
+#define TIM2X5_CR2_MMS              (4UL)
+#define TIM2X5_CR2_TI1S             (7UL)
+
+/* @TIM2X5_SR */
+#define TIM2X5_SR_UIF               (0UL)
+#define TIM2X5_SR_CC1IF             (1UL)
+#define TIM2X5_SR_CC2IF             (2UL)
+#define TIM2X5_SR_CC3IF             (3UL)
+#define TIM2X5_SR_CC4IF             (4UL)
+#define TIM2X5_SR_TIF               (6UL)
+#define TIM2X5_SR_CC10F             (9UL)
+#define TIM2X5_SR_CC20F             (10UL)
+#define TIM2X5_SR_CC30F             (11UL)
+#define TIM2X5_SR_CC40F             (12UL)
+
+/* @TIM2X5_CCMR1 */
+#define TIM2X5_CCMR1_CC1S           (0UL)
+#define TIM2X5_CCMR1_OC1FE          (2UL)
+#define TIM2X5_CCMR1_OC1PE          (3UL)
+#define TIM2X5_CCMR1_OC1M           (4UL)
+#define TIM2X5_CCMR1_OC1CE          (7UL)
+#define TIM2X5_CCMR1_CC2S           (8UL)
+#define TIM2X5_CCMR1_OC2FE          (10UL)
+#define TIM2X5_CCMR1_OC2PE          (11UL)
+#define TIM2X5_CCMR1_OC2M           (12UL)
+#define TIM2X5_CCMR1_OC2CE          (15UL)
+#define TIM2X5_CCMR1_IC1PSC         (2UL)
+#define TIM2X5_CCMR1_IC1F           (4UL)
+#define TIM2X5_CCMR1_IC2PSC         (10UL)
+#define TIM2X5_CCMR1_IC2F           (12UL)
+
+/* @TIM2X5_CCMR1_CC1S */
+#define TIM2X5_CCMR1_CC1S_OP         (0x0UL)
+#define TIM2X5_CCMR1_CC1S_IP_TI1     (0x1UL)
+#define TIM2X5_CCMR1_CC1S_IP_TI2     (0x2UL)
+#define TIM2X5_CCMR1_CC1S_IP_TRC     (0x3UL)
+
+/* @TIM2X5_CCMR1_OC1M */
+#define TIM2X5_CCMR1_OC1M_FROZEN     (0x0UL)
+#define TIM2X5_CCMR1_OC1M_SET        (0x1UL)
+#define TIM2X5_CCMR1_OC1M_CLEAR      (0x2UL)
+#define TIM2X5_CCMR1_OC1M_TOGGLE     (0x3UL)
+#define TIM2X5_CCMR1_OC1M_FRC_CLEAR  (0x4UL)
+#define TIM2X5_CCMR1_OC1M_FRC_SET    (0x5UL)
+#define TIM2X5_CCMR1_OC1M_PWM_MODE1  (0x6UL)
+#define TIM2X5_CCMR1_OC1M_PWM_MODE2  (0x7UL)
+
+/* @TIM2X5_CCMR1_CC2S */
+#define TIM2X5_CCMR1_CC2S_OP         (0x0UL)
+#define TIM2X5_CCMR1_CC2S_IP_TI1     (0x1UL)
+#define TIM2X5_CCMR1_CC2S_IP_TI2     (0x2UL)
+#define TIM2X5_CCMR1_CC2S_IP_TRC     (0x3UL)
+
+/* @TIM2X5_CCMR1_OC2M */
+#define TIM2X5_CCMR1_OC2M_FROZEN     (0x0UL)
+#define TIM2X5_CCMR1_OC2M_SET        (0x1UL)
+#define TIM2X5_CCMR1_OC2M_CLEAR      (0x2UL)
+#define TIM2X5_CCMR1_OC2M_TOGGLE     (0x3UL)
+#define TIM2X5_CCMR1_OC2M_FRC_CLEAR  (0x4UL)
+#define TIM2X5_CCMR1_OC2M_FRC_SET    (0x5UL)
+#define TIM2X5_CCMR1_OC2M_PWM_MODE1  (0x6UL)
+#define TIM2X5_CCMR1_OC2M_PWM_MODE2  (0x7UL)
+
+/* @TIM2X5_CCMR1_IC1PSC */
+#define TIM2X5_CCMR1_IC1PSC_NONE     (0UL)
+#define TIM2X5_CCMR1_IC1PSC_2        (1UL)
+#define TIM2X5_CCMR1_IC1PSC_4        (2UL)
+#define TIM2X5_CCMR1_IC1PSC_8        (3UL)
+
+/* @TIM2X5_CCMR1_IC1F */
+#define TIM2X5_CCMR1_IC1F_NONE          (0UL)
+#define TIM2X5_CCMR1_IC1F_N2            (1UL)
+#define TIM2X5_CCMR1_IC1F_N4            (2UL)
+#define TIM2X5_CCMR1_IC1F_N8            (3UL)
+#define TIM2X5_CCMR1_IC1F_DIV2N6        (4UL)
+#define TIM2X5_CCMR1_IC1F_DIV2N8        (5UL)
+#define TIM2X5_CCMR1_IC1F_DIV4N6        (6UL)
+#define TIM2X5_CCMR1_IC1F_DIV4N8        (7UL)
+#define TIM2X5_CCMR1_IC1F_DIV8N6        (8UL)
+#define TIM2X5_CCMR1_IC1F_DIV8N8        (9UL)
+#define TIM2X5_CCMR1_IC1F_DIV16N5       (10UL)
+#define TIM2X5_CCMR1_IC1F_DIV16N6       (11UL)
+#define TIM2X5_CCMR1_IC1F_DIV16N8       (12UL)
+#define TIM2X5_CCMR1_IC1F_DIV32N5       (13UL)
+#define TIM2X5_CCMR1_IC1F_DIV32N6       (14UL)
+#define TIM2X5_CCMR1_IC1F_DIV32N8       (15UL)
+
+/* @TIM2X5_CCMR1_IC2PSC */
+#define TIM2X5_CCMR1_IC2PSC_NONE     (0UL)
+#define TIM2X5_CCMR1_IC2PSC_2        (1UL)
+#define TIM2X5_CCMR1_IC2PSC_4        (2UL)
+#define TIM2X5_CCMR1_IC2PSC_8        (3UL)
+
+/* @TIM2X5_CCMR1_IC2F */
+#define TIM2X5_CCMR1_IC2F_NONE          (0UL)
+#define TIM2X5_CCMR1_IC2F_N2            (1UL)
+#define TIM2X5_CCMR1_IC2F_N4            (2UL)
+#define TIM2X5_CCMR1_IC2F_N8            (3UL)
+#define TIM2X5_CCMR1_IC2F_DIV2N6        (4UL)
+#define TIM2X5_CCMR1_IC2F_DIV2N8        (5UL)
+#define TIM2X5_CCMR1_IC2F_DIV4N6        (6UL)
+#define TIM2X5_CCMR1_IC2F_DIV4N8        (7UL)
+#define TIM2X5_CCMR1_IC2F_DIV8N6        (8UL)
+#define TIM2X5_CCMR1_IC2F_DIV8N8        (9UL)
+#define TIM2X5_CCMR1_IC2F_DIV16N5       (10UL)
+#define TIM2X5_CCMR1_IC2F_DIV16N6       (11UL)
+#define TIM2X5_CCMR1_IC2F_DIV16N8       (12UL)
+#define TIM2X5_CCMR1_IC2F_DIV32N5       (13UL)
+#define TIM2X5_CCMR1_IC2F_DIV32N6       (14UL)
+#define TIM2X5_CCMR1_IC2F_DIV32N8       (15UL)
+
+/* @TIM2X5_CCMR2 */
+#define TIM2X5_CCMR2_CC3S           (0UL)
+#define TIM2X5_CCMR2_OC3FE          (2UL)
+#define TIM2X5_CCMR2_OC3PE          (3UL)
+#define TIM2X5_CCMR2_OC3M           (4UL)
+#define TIM2X5_CCMR2_OC3CE          (7UL)
+#define TIM2X5_CCMR2_CC4S           (8UL)
+#define TIM2X5_CCMR2_OC4FE          (10UL)
+#define TIM2X5_CCMR2_OC4PE          (11UL)
+#define TIM2X5_CCMR2_OC4M           (12UL)
+#define TIM2X5_CCMR2_OC4CE          (15UL)
+#define TIM2X5_CCMR2_IC3PSC         (2UL)
+#define TIM2X5_CCMR2_IC3F           (4UL)
+#define TIM2X5_CCMR2_IC4PSC         (10UL)
+#define TIM2X5_CCMR2_IC4F           (12UL)
+
+/* @TIM2X5_CCMR2_CC3S */
+#define TIM2X5_CCR2_CC3S_OP         (0x0UL)
+#define TIM2X5_CCR2_CC3S_IP_TI3     (0x1UL)
+#define TIM2X5_CCR2_CC3S_IP_TI4     (0x2UL)
+#define TIM2X5_CCR2_CC3S_IP_TRC     (0x3UL)
+
+/* @TIM2X5_CCMR2_OC3M */
+#define TIM2X5_CCMR2_OC3M_FROZEN     (0x0UL)
+#define TIM2X5_CCMR2_OC3M_SET        (0x1UL)
+#define TIM2X5_CCMR2_OC3M_CLEAR      (0x2UL)
+#define TIM2X5_CCMR2_OC3M_TOGGLE     (0x3UL)
+#define TIM2X5_CCMR2_OC3M_FRC_CLEAR  (0x4UL)
+#define TIM2X5_CCMR2_OC3M_FRC_SET    (0x5UL)
+#define TIM2X5_CCMR2_OC3M_PWM_MODE1  (0x6UL)
+#define TIM2X5_CCMR2_OC3M_PWM_MODE2  (0x7UL)
+
+/* @TIM2X5_CCMR2_CC4S */
+#define TIM2X5_CCMR2_CC4S_OP         (0x0UL)
+#define TIM2X5_CCMR2_CC4S_IP_TI4     (0x1UL)
+#define TIM2X5_CCMR2_CC4S_IP_TI3     (0x2UL)
+#define TIM2X5_CCMR2_CC4S_IP_TRC     (0x3UL)
+
+/* @TIM2X5_CCMR2_OC4M */
+#define TIM2X5_CCMR2_OC4M_FROZEN     (0x0UL)
+#define TIM2X5_CCMR2_OC4M_SET        (0x1UL)
+#define TIM2X5_CCMR2_OC4M_CLEAR      (0x2UL)
+#define TIM2X5_CCMR2_OC4M_TOGGLE     (0x3UL)
+#define TIM2X5_CCMR2_OC4M_FRC_CLEAR  (0x4UL)
+#define TIM2X5_CCMR2_OC4M_FRC_SET    (0x5UL)
+#define TIM2X5_CCMR2_OC4M_PWM_MODE1  (0x6UL)
+#define TIM2X5_CCMR2_OC4M_PWM_MODE2  (0x7UL)
+
+/* @TIM2X5_CCR2_IC3PSC */
+#define TIM2X5_CCR2_IC3PSC_NONE     (0UL)
+#define TIM2X5_CCR2_IC3PSC_2        (1UL)
+#define TIM2X5_CCR2_IC3PSC_4        (2UL)
+#define TIM2X5_CCR2_IC3PSC_8        (3UL)
+
+/* @TIM2X5_CCMR2_IC1F */
+#define TIM2X5_CCMR2_IC3F_NONE          (0UL)
+#define TIM2X5_CCMR2_IC3F_N2            (1UL)
+#define TIM2X5_CCMR2_IC3F_N4            (2UL)
+#define TIM2X5_CCMR2_IC3F_N8            (3UL)
+#define TIM2X5_CCMR2_IC3F_DIV2N6        (4UL)
+#define TIM2X5_CCMR2_IC3F_DIV2N8        (5UL)
+#define TIM2X5_CCMR2_IC3F_DIV4N6        (6UL)
+#define TIM2X5_CCMR2_IC3F_DIV4N8        (7UL)
+#define TIM2X5_CCMR2_IC3F_DIV8N6        (8UL)
+#define TIM2X5_CCMR2_IC3F_DIV8N8        (9UL)
+#define TIM2X5_CCMR2_IC3F_DIV16N5       (10UL)
+#define TIM2X5_CCMR2_IC3F_DIV16N6       (11UL)
+#define TIM2X5_CCMR2_IC3F_DIV16N8       (12UL)
+#define TIM2X5_CCMR2_IC3F_DIV32N5       (13UL)
+#define TIM2X5_CCMR2_IC3F_DIV32N6       (14UL)
+#define TIM2X5_CCMR2_IC3F_DIV32N8       (15UL)
+
+/* @TIM2X5_CCMR2_IC4PSC */
+#define TIM2X5_CCMR2_IC4PSC_NONE     (0UL)
+#define TIM2X5_CCMR2_IC4PSC_2        (1UL)
+#define TIM2X5_CCMR2_IC4PSC_4        (2UL)
+#define TIM2X5_CCMR2_IC4PSC_8        (3UL)
+
+/* @TIM2X5_CCMR2_IC4F */
+#define TIM2X5_CCMR2_IC4F_NONE          (0UL)
+#define TIM2X5_CCMR2_IC4F_N2            (1UL)
+#define TIM2X5_CCMR2_IC4F_N4            (2UL)
+#define TIM2X5_CCMR2_IC4F_N8            (3UL)
+#define TIM2X5_CCMR2_IC4F_DIV2N6        (4UL)
+#define TIM2X5_CCMR2_IC4F_DIV2N8        (5UL)
+#define TIM2X5_CCMR2_IC4F_DIV4N6        (6UL)
+#define TIM2X5_CCMR2_IC4F_DIV4N8        (7UL)
+#define TIM2X5_CCMR2_IC4F_DIV8N6        (8UL)
+#define TIM2X5_CCMR2_IC4F_DIV8N8        (9UL)
+#define TIM2X5_CCMR2_IC4F_DIV16N5       (10UL)
+#define TIM2X5_CCMR2_IC4F_DIV16N6       (11UL)
+#define TIM2X5_CCMR2_IC4F_DIV16N8       (12UL)
+#define TIM2X5_CCMR2_IC4F_DIV32N5       (13UL)
+#define TIM2X5_CCMR2_IC4F_DIV32N6       (14UL)
+#define TIM2X5_CCMR2_IC4F_DIV32N8       (15UL)
+
+/* @TIM2X5_CCER */
+#define TIM2X5_CCER_CC1E                 (0UL)
+#define TIM2X5_CCER_CC1P                 (1UL)
+#define TIM2X5_CCER_CC1NP                (3UL)
+#define TIM2X5_CCER_CC2E                (4UL)
+#define TIM2X5_CCER_CC2P                (5UL)
+#define TIM2X5_CCER_CC2NP               (7UL)
+#define TIM2X5_CCER_CC3E                (8UL)
+#define TIM2X5_CCER_CC3P                (9UL)
+#define TIM2X5_CCER_CC3NP               (11UL)
+#define TIM2X5_CCER_CC4E                (12UL)
+#define TIM2X5_CCER_CC4P                (13UL)
+#define TIM2X5_CCER_CC4NP               (15UL)
+
+/* @TIM2X5_TIM2_OR */
+#define TIM2X5_TIM2_OR_ITR1_RMP          (10UL)
+
+/* @TIM2X5_TIM5_OR */
+#define TIM2X5_TIM2_OR_TI4_RMP           (6UL)
 
 
 /**********************************/
@@ -395,7 +687,218 @@ typedef struct
 #define SYSCFG_BASE_ADDR            ((APB2_BASE_ADDR) + 0x3800)
 
 
+/****************************/
+/* APB2 register structures */
+/****************************/
+typedef struct
+{
+    volatile uint32_t MEMRMP;
+    volatile uint32_t PMC;
+    volatile uint32_t EXTICR[4];
+    volatile uint32_t CMPCR;
+    volatile uint32_t CFGR;
+} SYSCFG_regdef_t
 
 
+typedef struct
+{
+    volatile uint32_t IMR;
+    volatile uint32_t EMR;
+    volatile uint32_t RTSR;
+    volatile uint32_t FTSR;
+    volatile uint32_t SWIER;
+    volatile uint32_t PR;
+} EXTI_regdef_t
+
+
+/***********************************************/
+/* AHB2 register structure pointer definitions */
+/***********************************************/
+#define SYSCFG                  ((SYSCFG_regdef_t *)SYSCFG_BASE_ADDR)
+#define EXTI                    ((EXTI_regdef_t *)EXTI_BASE_ADDR)
+
+
+/**************************/
+/* AHB2 peripheral macros */
+/**************************/
+/* @SYSCFG_EXTICR_IDX */
+#define SYSCFG_EXTICR_IDX0          (0 / 4)
+#define SYSCFG_EXTICR_IDX1          (1 / 4)
+#define SYSCFG_EXTICR_IDX2          (2 / 4)
+#define SYSCFG_EXTICR_IDX3          (3 / 4)
+#define SYSCFG_EXTICR_IDX4          (4 / 4)
+#define SYSCFG_EXTICR_IDX5          (5 / 4)
+#define SYSCFG_EXTICR_IDX6          (6 / 4)
+#define SYSCFG_EXTICR_IDX7          (7 / 4)
+#define SYSCFG_EXTICR_IDX8          (8 / 4)
+#define SYSCFG_EXTICR_IDX9          (9 / 4)
+#define SYSCFG_EXTICR_IDX10         (10 / 4)
+#define SYSCFG_EXTICR_IDX11         (11 / 4)
+#define SYSCFG_EXTICR_IDX12         (12 / 4)
+#define SYSCFG_EXTICR_IDX13         (13 / 4)
+#define SYSCFG_EXTICR_IDX14         (14 / 4)
+#define SYSCFG_EXTICR_IDX15         (15 / 4)
+
+/* @SYSCFG_EXTICR */
+#define SYSCFG_EXTICR_EXTI0         ((0 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI1         ((1 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI2         ((2 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI3         ((3 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI4         ((4 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI5         ((5 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI6         ((6 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI7         ((7 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI8         ((8 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI9         ((9 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI10        ((10 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI11        ((11 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI12        ((12 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI13        ((13 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI14        ((14 % 4) * 4)
+#define SYSCFG_EXTICR_EXTI15        ((15 % 4) * 4)
+
+/* @SYSCFG_EXTICR_EXTI */
+#define SYSCFG_EXTICR_EXTI_PA           (0UL)
+#define SYSCFG_EXTICR_EXTI_PB           (1UL)
+#define SYSCFG_EXTICR_EXTI_PC           (2UL)
+#define SYSCFG_EXTICR_EXTI_PD           (3UL)
+#define SYSCFG_EXTICR_EXTI_PE           (4UL)
+#define SYSCFG_EXTICR_EXTI_PF           (5UL)
+#define SYSCFG_EXTICR_EXTI_PG           (6UL)
+#define SYSCFG_EXTICR_EXTI_PH           (7UL)
+
+/* @EXTI_IMR */
+#define EXTI_IMR_MR0                    (0UL)
+#define EXTI_IMR_MR1                    (1UL)
+#define EXTI_IMR_MR2                    (2UL)
+#define EXTI_IMR_MR3                    (3UL)
+#define EXTI_IMR_MR4                    (4UL)
+#define EXTI_IMR_MR5                    (5UL)
+#define EXTI_IMR_MR6                    (6UL)
+#define EXTI_IMR_MR7                    (7UL)
+#define EXTI_IMR_MR8                    (8UL)
+#define EXTI_IMR_MR9                    (9UL)
+#define EXTI_IMR_MR10                   (10UL)
+#define EXTI_IMR_MR11                   (11UL)
+#define EXTI_IMR_MR12                   (12UL)
+#define EXTI_IMR_MR13                   (13UL)
+#define EXTI_IMR_MR14                   (14UL)
+#define EXTI_IMR_MR15                   (15UL)
+
+/* @EXTI_EMR */
+#define EXTI_EMR_MR0                    (0UL)
+#define EXTI_EMR_MR1                    (1UL)
+#define EXTI_EMR_MR2                    (2UL)
+#define EXTI_EMR_MR3                    (3UL)
+#define EXTI_EMR_MR4                    (4UL)
+#define EXTI_EMR_MR5                    (5UL)
+#define EXTI_EMR_MR6                    (6UL)
+#define EXTI_EMR_MR7                    (7UL)
+#define EXTI_EMR_MR8                    (8UL)
+#define EXTI_EMR_MR9                    (9UL)
+#define EXTI_EMR_MR10                   (10UL)
+#define EXTI_EMR_MR11                   (11UL)
+#define EXTI_EMR_MR12                   (12UL)
+#define EXTI_EMR_MR13                   (13UL)
+#define EXTI_EMR_MR14                   (14UL)
+#define EXTI_EMR_MR15                   (15UL)
+
+/* @EXTI_RTSR */
+#define EXTI_RTSR_TR0                   (0UL)
+#define EXTI_RTSR_TR1                   (1UL)
+#define EXTI_RTSR_TR2                   (2UL)
+#define EXTI_RTSR_TR3                   (3UL)
+#define EXTI_RTSR_TR4                   (4UL)
+#define EXTI_RTSR_TR5                   (5UL)
+#define EXTI_RTSR_TR6                   (6UL)
+#define EXTI_RTSR_TR7                   (7UL)
+#define EXTI_RTSR_TR8                   (8UL)
+#define EXTI_RTSR_TR9                   (9UL)
+#define EXTI_RTSR_TR10                  (10UL)
+#define EXTI_RTSR_TR11                  (11UL)
+#define EXTI_RTSR_TR12                  (12UL)
+#define EXTI_RTSR_TR13                  (13UL)
+#define EXTI_RTSR_TR14                  (14UL)
+#define EXTI_RTSR_TR15                  (15UL)
+#define EXTI_RTSR_TR16                  (16UL)
+#define EXTI_RTSR_TR17                  (17UL)
+#define EXTI_RTSR_TR18                  (18UL)
+#define EXTI_RTSR_TR20                  (20UL)
+#define EXTI_RTSR_TR21                  (21UL)
+#define EXTI_RTSR_TR22                  (22UL)
+
+/* @EXTI_FTSR */
+#define EXTI_FTSR_TR0                   (0UL)
+#define EXTI_FTSR_TR1                   (1UL)
+#define EXTI_FTSR_TR2                   (2UL)
+#define EXTI_FTSR_TR3                   (3UL)
+#define EXTI_FTSR_TR4                   (4UL)
+#define EXTI_FTSR_TR5                   (5UL)
+#define EXTI_FTSR_TR6                   (6UL)
+#define EXTI_FTSR_TR7                   (7UL)
+#define EXTI_FTSR_TR8                   (8UL)
+#define EXTI_FTSR_TR9                   (9UL)
+#define EXTI_FTSR_TR10                  (10UL)
+#define EXTI_FTSR_TR11                  (11UL)
+#define EXTI_FTSR_TR12                  (12UL)
+#define EXTI_FTSR_TR13                  (13UL)
+#define EXTI_FTSR_TR14                  (14UL)
+#define EXTI_FTSR_TR15                  (15UL)
+#define EXTI_FTSR_TR16                  (16UL)
+#define EXTI_FTSR_TR17                  (17UL)
+#define EXTI_FTSR_TR18                  (18UL)
+#define EXTI_FTSR_TR20                  (20UL)
+#define EXTI_FTSR_TR21                  (21UL)
+#define EXTI_FTSR_TR22                  (22UL)
+
+/* @EXTI_SWIER */
+#define EXTI_SWIER_SWIER0               (0UL)
+#define EXTI_SWIER_SWIER1               (1UL)
+#define EXTI_SWIER_SWIER2               (2UL)
+#define EXTI_SWIER_SWIER3               (3UL)
+#define EXTI_SWIER_SWIER4               (4UL)
+#define EXTI_SWIER_SWIER5               (5UL)
+#define EXTI_SWIER_SWIER6               (6UL)
+#define EXTI_SWIER_SWIER7               (7UL)
+#define EXTI_SWIER_SWIER8               (8UL)
+#define EXTI_SWIER_SWIER9               (9UL)
+#define EXTI_SWIER_SWIER10              (10UL)
+#define EXTI_SWIER_SWIER11              (11UL)
+#define EXTI_SWIER_SWIER12              (12UL)
+#define EXTI_SWIER_SWIER13              (13UL)
+#define EXTI_SWIER_SWIER14              (14UL)
+#define EXTI_SWIER_SWIER15              (15UL)
+#define EXTI_SWIER_SWIER16              (16UL)
+#define EXTI_SWIER_SWIER17              (17UL)
+#define EXTI_SWIER_SWIER18              (18UL)
+#define EXTI_SWIER_SWIER19              (19UL)
+#define EXTI_SWIER_SWIER20              (20UL)
+#define EXTI_SWIER_SWIER21              (21UL)
+#define EXTI_SWIER_SWIER22              (22UL)
+
+/* @EXTI_PR */
+#define EXTI_PR_PR0               (0UL)
+#define EXTI_PR_PR1               (1UL)
+#define EXTI_PR_PR2               (2UL)
+#define EXTI_PR_PR3               (3UL)
+#define EXTI_PR_PR4               (4UL)
+#define EXTI_PR_PR5               (5UL)
+#define EXTI_PR_PR6               (6UL)
+#define EXTI_PR_PR7               (7UL)
+#define EXTI_PR_PR8               (8UL)
+#define EXTI_PR_PR9               (9UL)
+#define EXTI_PR_PR10              (10UL)
+#define EXTI_PR_PR11              (11UL)
+#define EXTI_PR_PR12              (12UL)
+#define EXTI_PR_PR13              (13UL)
+#define EXTI_PR_PR14              (14UL)
+#define EXTI_PR_PR15              (15UL)
+#define EXTI_PR_PR16              (16UL)
+#define EXTI_PR_PR17              (17UL)
+#define EXTI_PR_PR18              (18UL)
+#define EXTI_PR_PR19              (19UL)
+#define EXTI_PR_PR20              (20UL)
+#define EXTI_PR_PR21              (21UL)
+#define EXTI_PR_PR22              (22UL)
 
 #endif
