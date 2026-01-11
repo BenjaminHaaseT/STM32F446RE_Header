@@ -30,6 +30,7 @@
 #define NVIC_ISER_BASE_ADDR         (0xE000E100UL)
 #define NVIC_IPR_BASE_ADDR          (0xE000E400UL)
 
+
 /************************************/
 /* core processor register pointers */
 /************************************/
@@ -194,7 +195,7 @@ typedef struct
 {
     volatile uint32_t MODER;
     volatile uint32_t OTYPER;
-    volatile uint32_t OSPEEDER;
+    volatile uint32_t OSPEEDR;
     volatile uint32_t PUPDR;
     volatile uint32_t IDR;
     volatile uint32_t ODR;
@@ -208,15 +209,15 @@ typedef struct
 /***********************************************/
 /* AHB1 register structure pointer definitions */
 /***********************************************/
-#define RCC             ((RCC_regdef_t *const)RCC_BASE_ADDR);
-#define GPIOA           ((GPIO_regdef_t *const)GPIOA_BASE_ADDR);
-#define GPIOB           ((GPIO_regdef_t *const)GPIOB_BASE_ADDR);
-#define GPIOC           ((GPIO_regdef_t *const)GPIOC_BASE_ADDR);
-#define GPIOD           ((GPIO_regdef_t *const)GPIOD_BASE_ADDR);
-#define GPIOE           ((GPIO_regdef_t *const)GPIOE_BASE_ADDR);
-#define GPIOF           ((GPIO_regdef_t *const)GPIOF_BASE_ADDR);
-#define GPIOG           ((GPIO_regdef_t *const)GPIOG_BASE_ADDR);
-#define GPIOH           ((GPIO_regdef_t *const)GPIOH_BASE_ADDR);
+#define RCC             ((RCC_regdef_t *const)RCC_BASE_ADDR)
+#define GPIOA           ((GPIO_regdef_t *const)GPIOA_BASE_ADDR)
+#define GPIOB           ((GPIO_regdef_t *const)GPIOB_BASE_ADDR)
+#define GPIOC           ((GPIO_regdef_t *const)GPIOC_BASE_ADDR)
+#define GPIOD           ((GPIO_regdef_t *const)GPIOD_BASE_ADDR)
+#define GPIOE           ((GPIO_regdef_t *const)GPIOE_BASE_ADDR)
+#define GPIOF           ((GPIO_regdef_t *const)GPIOF_BASE_ADDR)
+#define GPIOG           ((GPIO_regdef_t *const)GPIOG_BASE_ADDR)
+#define GPIOH           ((GPIO_regdef_t *const)GPIOH_BASE_ADDR)
 
 /**************************/
 /* AHB1 peripheral macros */
@@ -312,21 +313,21 @@ typedef struct
 
 /* @GPIO_MODER */
 #define GPIO_MODER_MODER0           (0UL)
-#define GPIO_MODER_MODER1           (1UL)
-#define GPIO_MODER_MODER2           (2UL)
-#define GPIO_MODER_MODER3           (3UL)
-#define GPIO_MODER_MODER4           (4UL)
-#define GPIO_MODER_MODER5           (5UL)
-#define GPIO_MODER_MODER6           (6UL)
-#define GPIO_MODER_MODER7           (7UL)
-#define GPIO_MODER_MODER8           (8UL)
-#define GPIO_MODER_MODER9           (9UL)
-#define GPIO_MODER_MODER10          (10UL)
-#define GPIO_MODER_MODER11          (11UL)
-#define GPIO_MODER_MODER12          (12UL)
-#define GPIO_MODER_MODER13          (13UL)
-#define GPIO_MODER_MODER14          (14UL)
-#define GPIO_MODER_MODER15          (15UL)
+#define GPIO_MODER_MODER1           (2UL)
+#define GPIO_MODER_MODER2           (4UL)
+#define GPIO_MODER_MODER3           (6UL)
+#define GPIO_MODER_MODER4           (8UL)
+#define GPIO_MODER_MODER5           (10UL)
+#define GPIO_MODER_MODER6           (12UL)
+#define GPIO_MODER_MODER7           (14UL)
+#define GPIO_MODER_MODER8           (16UL)
+#define GPIO_MODER_MODER9           (18UL)
+#define GPIO_MODER_MODER10          (20UL)
+#define GPIO_MODER_MODER11          (22UL)
+#define GPIO_MODER_MODER12          (24UL)
+#define GPIO_MODER_MODER13          (26UL)
+#define GPIO_MODER_MODER14          (28UL)
+#define GPIO_MODER_MODER15          (30UL)
 
 /* @GPIO_MODER_MODER */
 #define GPIO_MODER_MODER_IP         (0UL)
@@ -353,10 +354,32 @@ typedef struct
 #define GPIO_OTYPER_OT15            (15UL)
 
 /* @GPIO_OTYPER_OT */
-#define GPIO_OTYPER_OT_LOW          (0UL)
-#define GPIO_OTYPER_OT_MED          (1UL)
-#define GPIO_OTYPER_OT_FAST         (2UL)
-#define GPIO_OTYPER_OT_HIGH         (3UL)
+#define GPIO_OTYPER_OT_PP			(0UL)
+#define GPIO_OTYPER_OT_OD			(1UL)
+
+/* @GPIO_OSPEEDR */
+#define GPIO_OSPEEDR_OSPEEDR0		(0UL)
+#define GPIO_OSPEEDR_OSPEEDR1		(2UL)
+#define GPIO_OSPEEDR_OSPEEDR2		(4UL)
+#define GPIO_OSPEEDR_OSPEEDR3		(6UL)
+#define GPIO_OSPEEDR_OSPEEDR4		(8UL)
+#define GPIO_OSPEEDR_OSPEEDR5		(10UL)
+#define GPIO_OSPEEDR_OSPEEDR6		(12UL)
+#define GPIO_OSPEEDR_OSPEEDR7		(14UL)
+#define GPIO_OSPEEDR_OSPEEDR8		(16UL)
+#define GPIO_OSPEEDR_OSPEEDR9		(18UL)
+#define GPIO_OSPEEDR_OSPEEDR10		(20UL)
+#define GPIO_OSPEEDR_OSPEEDR11		(22UL)
+#define GPIO_OSPEEDR_OSPEEDR12		(24UL)
+#define GPIO_OSPEEDR_OSPEEDR13		(26UL)
+#define GPIO_OSPEEDR_OSPEEDR14		(28UL)
+#define GPIO_OSPEEDR_OSPEEDR15		(30UL)
+
+/* @GPIO_OSPEEDR_OSPEEDR */
+#define GPIO_OSPEEDR_OSPEEDR_LOW          (0UL)
+#define GPIO_OSPEEDR_OSPEEDR_MED          (1UL)
+#define GPIO_OSPEEDR_OSPEEDR_FAST         (2UL)
+#define GPIO_OSPEEDR_OSPEEDRT_HIGH         (3UL)
 
 /* @GPIO_PUPDR */
 #define GPIO_PUPDR_PUPDR0           (0UL)
@@ -375,6 +398,11 @@ typedef struct
 #define GPIO_PUPDR_PUPDR13          (26UL)
 #define GPIO_PUPDR_PUPDR14          (28UL)
 #define GPIO_PUPDR_PUPDR15          (30UL)
+
+/* @GPIO_PUPDR_PUPDR */
+#define GPIO_PUPDR_PUPDR_NONE		(0x0UL)
+#define GPIO_PUPDR_PUPDR_PU			(0x1UL)
+#define GPIO_PUPDR_PUPDR_PD			(0x2UL)
 
 /* @GPIO_IDR */
 #define GPIO_IDR_IDR0               (0UL)
@@ -484,6 +512,43 @@ typedef struct
 #define GPIO_AFR_IDX14              ((GPIO_PIN14) / 8)
 #define GPIO_AFR_IDX15              ((GPIO_PIN15) / 8)
 
+/* @GPIO_AFR */
+#define GPIO_AFR_AFR0				((0 % 8) * 4)
+#define GPIO_AFR_AFR1				((1 % 8) * 4)
+#define GPIO_AFR_AFR2				((2 % 8) * 4)
+#define GPIO_AFR_AFR3				((3 % 8) * 4)
+#define GPIO_AFR_AFR4				((4 % 8) * 4)
+#define GPIO_AFR_AFR5				((5 % 8) * 4)
+#define GPIO_AFR_AFR6				((6 % 8) * 4)
+#define GPIO_AFR_AFR7				((7 % 8) * 4)
+#define GPIO_AFR_AFR8				((8 % 8) * 4)
+#define GPIO_AFR_AFR9				((9 % 8) * 4)
+#define GPIO_AFR_AFR10				((10 % 8) * 4)
+#define GPIO_AFR_AFR11				((11 % 8) * 4)
+#define GPIO_AFR_AFR12				((12 % 8) * 4)
+#define GPIO_AFR_AFR13				((13 % 8) * 4)
+#define GPIO_AFR_AFR14				((14 % 8) * 4)
+#define GPIO_AFR_AFR15				((15 % 8) * 4)
+
+/* @GPIO_AFR_AFR */
+#define GPIO_AFR_AFR_AF0			(0UL)
+#define GPIO_AFR_AFR_AF1			(1UL)
+#define GPIO_AFR_AFR_AF2			(2UL)
+#define GPIO_AFR_AFR_AF3			(3UL)
+#define GPIO_AFR_AFR_AF4			(4UL)
+#define GPIO_AFR_AFR_AF5			(5UL)
+#define GPIO_AFR_AFR_AF6			(6UL)
+#define GPIO_AFR_AFR_AF7			(7UL)
+#define GPIO_AFR_AFR_AF8			(8UL)
+#define GPIO_AFR_AFR_AF9			(9UL)
+#define GPIO_AFR_AFR_AF10			(10UL)
+#define GPIO_AFR_AFR_AF11			(11UL)
+#define GPIO_AFR_AFR_AF12			(12UL)
+#define GPIO_AFR_AFR_AF13			(13UL)
+#define GPIO_AFR_AFR_AF14			(14UL)
+#define GPIO_AFR_AFR_AF15			(15UL)
+
+
 /* AHB2 Peripheral base addresses */
 
 /* AHB3 Peripheral base addresses */
@@ -493,6 +558,8 @@ typedef struct
 /* APB1 Peripheral base addresses */
 /**********************************/
 #define TIM2_BASE_ADDR              ((APB1_BASE_ADDR) + 0x0)
+#define TIM3_BASE_ADDR				((APB1_BASE_ADDR) + 0x0400)
+#define TIM4_BASE_ADDR				((APB1_BASE_ADDR) + 0x0800)
 #define TIM5_BASE_ADDR              ((APB1_BASE_ADDR) + 0x0C00)
 
 
@@ -528,7 +595,14 @@ typedef struct
 /***********************************************/
 /* AHB1 register structure pointer definitions */
 /***********************************************/
+#define TIM2					((TIM2X5_regdef_t *)TIM2_BASE_ADDR)
+#define TIM3					((TIM2X5_regdef_t *)TIM3_BASE_ADDR)
+#define TIM4					((TIM2X5_regdef_t *)TIM4_BASE_ADDR)
+#define TIM5					((TIM2X5_regdef_t *)TIM5_BASE_ADDR)
 
+/**************************/
+/* AHB1 peripheral macros */
+/**************************/
 /* @TIM2X5_CR1 */
 #define TIM2X5_CR1_CEN              (0UL)
 #define TIM2X5_CR1_UDIS             (1UL)
@@ -788,7 +862,7 @@ typedef struct
     volatile uint32_t EXTICR[4];
     volatile uint32_t CMPCR;
     volatile uint32_t CFGR;
-} SYSCFG_regdef_t
+} SYSCFG_regdef_t;
 
 
 typedef struct
@@ -799,7 +873,7 @@ typedef struct
     volatile uint32_t FTSR;
     volatile uint32_t SWIER;
     volatile uint32_t PR;
-} EXTI_regdef_t
+} EXTI_regdef_t;
 
 
 /***********************************************/
@@ -992,4 +1066,6 @@ typedef struct
 #define EXTI_PR_PR21              (21UL)
 #define EXTI_PR_PR22              (22UL)
 
-#endif
+#define SET 			(1UL)
+
+#endif        // STM32F446XX_H
